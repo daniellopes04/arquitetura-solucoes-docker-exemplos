@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    build: .
+    container_name: node-mongo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      # - ./data:/data/db
+      - mongodb_data:/data/db
+volumes:
+  mongodb_data:
